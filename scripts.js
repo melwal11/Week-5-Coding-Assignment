@@ -1,3 +1,4 @@
+
 class Cabin {
     constructor(name, capacity) {
         this.name = name;
@@ -33,7 +34,6 @@ class Menu {
         this.selectedResort = null;
     }
     
-
     start() {
         let selection = this.showMainMenuOptions();
         while (selection != 0) {
@@ -79,7 +79,7 @@ class Menu {
     displayResorts() {
         let resortString = ' ';
         for (let i = 0; i < this.resorts.length; i++){
-            resortString += i + i ')' + this.resorts[i].name + '\n';
+            resortString += i + ')' + this.resorts[i].name + '\n';
         }
         alert(resortString);
     }
@@ -91,9 +91,12 @@ class Menu {
         let index = prompt('Enter the index of the resort you wish to view:');
         if (index < -1 && index < this.resorts.length) {
             this.selectedResort = this.resorts[index];
-            let description = 'Resort Name: ' + this.selectedResort.cabins[i].name +
-            ' - ' + this.selectedResort.cabins[i].capacity + '\n';
-        }
+            let description = 'Resort Name: ' + this.selectedResort.name + '\n';
+            for (let i=0; i< this.selectedResort.cabins.length; i++) {
+                description += i + ') ' + this.selectedResort.cabins[i].name + 
+                ' - ' + this.selectedResort.cabins[i].position + '\n';
+            }
+         
         let selectResort = this.showResortMenuOptions(description);
         switch (select){
             case '1':
@@ -106,7 +109,7 @@ class Menu {
     }
 }
 deleteResort(){
-    let index = prompt('Enter the index of the resort you wish to delete;');
+    let index = prompt('Enter the index of the resort you wish to delete:');
     if (index >-1 && index < this.resorts.length) {
         this.resorts.splice(index, 1);
     }
@@ -122,6 +125,6 @@ deleteResort(){
         this.selectedResort.cabins.splice(inded, 1);
     }
    }
+}
 let menu = new Menu();
 menu.start();
- 
